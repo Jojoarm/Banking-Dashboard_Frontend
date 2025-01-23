@@ -1,12 +1,10 @@
 import HeaderBox from '@/components/HeaderBox';
 import RightSideBar from '@/components/RightSideBar';
+import { useAppContext } from '@/context/AppContext';
 
 const Home = () => {
-  const loggedIn = {
-    firstName: 'Jojo',
-    lastName: 'Armani',
-    email: 'contact@devarmani.pro',
-  };
+  const { currentUser } = useAppContext();
+
   return (
     <section className="home">
       <div className="home-content">
@@ -14,14 +12,14 @@ const Home = () => {
           <HeaderBox
             type="greeting"
             title="Welcome"
-            user={loggedIn?.firstName || 'Guest'}
+            user={currentUser?.firstName || 'Guest'}
             subtext="Access and manage your account and transactions efficiently."
           />
         </header>
       </div>
 
       <RightSideBar
-        user={loggedIn}
+        user={currentUser}
         transactions={[]}
         banks={[{ currentBalance: 123.5 }, { currentBalance: 145.8 }]}
       />

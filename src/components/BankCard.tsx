@@ -1,4 +1,4 @@
-import { formatAmount } from '@/assets/lib/utils';
+import { formatAmount } from '@/lib/utils';
 import { Link } from 'react-router-dom';
 
 const BankCard = ({

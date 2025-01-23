@@ -1,6 +1,7 @@
 import { sidebarLinks } from '@/assets/constants';
 import { cn } from '@/lib/utils';
 import { Link, useLocation } from 'react-router-dom';
+import Footer from './Footer';
 
 const Sidebar = ({ user }: SiderbarProps) => {
   const location = useLocation();
@@ -44,6 +45,8 @@ const Sidebar = ({ user }: SiderbarProps) => {
           );
         })}
       </nav>
+
+      <Footer user={user} type="desktop" />
     </section>
   );
 };

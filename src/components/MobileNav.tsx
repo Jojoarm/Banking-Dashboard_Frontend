@@ -6,6 +6,7 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import { Link, useLocation } from 'react-router-dom';
+import Footer from './Footer';
 
 const MobileNav = ({ user }: MobileNavProps) => {
   const location = useLocation();
@@ -72,7 +73,7 @@ const MobileNav = ({ user }: MobileNavProps) => {
                   USER
                 </nav>
               </SheetClose>
-              FOOTER
+              <Footer user={user} type="mobile" />
             </div>
           </nav>
         </SheetContent>
