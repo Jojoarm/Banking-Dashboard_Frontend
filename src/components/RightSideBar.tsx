@@ -8,9 +8,19 @@ const RightSideBar = ({ user, transactions, banks }: RightSidebarProps) => {
         <div className="profile-banner" />
         <div className="profile">
           <div className="profile-img">
-            <span className="text-5xl font-bold text-blue-500">
-              {user?.firstName[0]}
-            </span>
+            {user?.imageUrl ? (
+              <div className=" flex size-20 ">
+                <img
+                  src={user?.imageUrl}
+                  alt="profile pic"
+                  className=" object-cover w-full h-full rounded-full"
+                />
+              </div>
+            ) : (
+              <span className="text-5xl font-bold text-blue-500">
+                {user?.firstName[0]}
+              </span>
+            )}
           </div>
 
           <div className="profile-details">
@@ -24,10 +34,10 @@ const RightSideBar = ({ user, transactions, banks }: RightSidebarProps) => {
 
       <section className="banks">
         <div className="flex w-full justify-between">
-          <h2 className="header-2">My Banks</h2>
+          <h2 className="header-2">My Cards</h2>
           <Link to="/" className="flex gap-2">
             <img src="/icons/plus.svg" alt="plus sign" width={20} height={20} />
-            <h2 className="text-14 font-semibold text-gray-600">Add Bank</h2>
+            <h2 className="text-14 font-semibold text-gray-600">Add Card</h2>
           </Link>
         </div>
         {banks?.length > 0 && (

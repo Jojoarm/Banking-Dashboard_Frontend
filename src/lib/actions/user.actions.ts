@@ -7,38 +7,36 @@ export const signIn = async (userData: LoginUser) => {
   const response = await axios.post(
     `${API_BASE_URL}/api/user/login`,
     userData,
+
     {
       withCredentials: true,
     }
   );
   const resBody = response?.data;
 
-  if (!response.data.success) {
+  if (!resBody.success) {
     throw new Error(response.data.message);
   }
 
   return resBody;
 };
 
-export const signUp = async (userData: SignUpParams) => {
-  try {
-    const response = await axios.post(
-      `${API_BASE_URL}/api/user/register`,
-      userData,
-      {
-        withCredentials: true,
-      }
-    );
-    const resBody = response?.data;
+export const signUp = async (userData: FormData) => {
+  const response = await axios.post(
+    `${API_BASE_URL}/api/user/register`,
+    userData,
 
-    if (!response.data.success) {
-      throw new Error(response.data.message);
+    {
+      withCredentials: true,
     }
+  );
+  const resBody = response?.data;
 
-    return resBody;
-  } catch (error) {
-    console.error('Error', error);
+  if (!resBody.success) {
+    throw new Error(response.data.message);
   }
+
+  return resBody;
 };
 
 export const validateToken = async () => {
@@ -47,7 +45,6 @@ export const validateToken = async () => {
       `${API_BASE_URL}/api/user/validate-token`,
       { withCredentials: true }
     );
-    // console.log(response, 'validateToken');
     return response;
   } catch (error) {
     toast.error('Please Login to continue');
@@ -60,10 +57,8 @@ export const fetchCurrentUser = async () => {
     const response = await axios.get(`${API_BASE_URL}/api/user/`, {
       withCredentials: true,
     });
-    // console.log(response.data, 'user');
     return response.data;
   } catch (error) {
-    // toast.error('Please Login to continue');
     console.log(error);
   }
 };
@@ -72,7 +67,6 @@ export const logoutUser = async () => {
   const response = await axios.delete(`${API_BASE_URL}/api/user/logout`, {
     withCredentials: true,
   });
-  console.log(response);
   if (response.statusText !== 'OK') {
     throw new Error('Error during signout');
   }

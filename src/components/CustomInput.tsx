@@ -1,20 +1,17 @@
 // import { Control } from 'react-hook-form';
-import { Control, FieldPath } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import { FormControl, FormField, FormLabel, FormMessage } from './ui/form';
 import { Input } from './ui/input';
-import { z } from 'zod';
-import { authFormSchema } from '@/lib/utils';
-
-const formSchema = authFormSchema('sign-up');
 
 interface CustomInput {
-  control: Control<z.infer<typeof formSchema>>;
-  name: FieldPath<z.infer<typeof formSchema>>;
+  name: string;
   label: string;
   placeholder: string;
 }
 
-const CustomInput = ({ control, name, label, placeholder }: CustomInput) => {
+const CustomInput = ({ name, label, placeholder }: CustomInput) => {
+  const { control } = useFormContext();
+
   return (
     <FormField
       control={control}

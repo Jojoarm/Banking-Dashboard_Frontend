@@ -8,16 +8,17 @@ declare type SearchParamProps = {
 // ========================================
 
 declare type SignUpParams = {
-  firstName?: string;
-  lastName?: string;
-  address1?: string;
-  city?: string;
-  state?: string;
-  postalCode?: string;
-  dateOfBirth?: string;
-  ssn?: string;
+  firstName: string;
+  lastName: string;
+  address1: string;
+  city: string;
+  state: string;
+  postalCode: string;
+  dateOfBirth: string;
+  ssn: string;
   email: string;
   password: string;
+  imageFile: string;
 };
 
 declare type LoginUser = {
@@ -29,8 +30,6 @@ declare type User = {
   _id: string;
   email: string;
   userId: string;
-  dwollaCustomerUrl?: string;
-  dwollaCustomerId?: string;
   firstName: string;
   lastName: string;
   address1: string;
@@ -39,6 +38,7 @@ declare type User = {
   postalCode: string;
   dateOfBirth: string;
   ssn: string;
+  imageUrl: string;
 };
 
 declare type NewUserParams = {
@@ -49,37 +49,65 @@ declare type NewUserParams = {
 };
 
 declare type Account = {
-  id: string;
+  _id: string;
   availableBalance: number;
   currentBalance: number;
-  officialName: string;
-  mask: string;
-  institutionId: string;
   name: string;
-  type: string;
-  subtype: string;
-  appwriteItemId: string;
-  sharableId: string;
+  cards: object;
+  transactionHistory?: object;
 };
 
+// declare type _Account = {
+//   id: string;
+//   availableBalance: number;
+//   currentBalance: number;
+//   officialName: string;
+//   mask: string;
+//   institutionId: string;
+//   name: string;
+//   type: string;
+//   subtype: string;
+//   appwriteItemId: string;
+//   sharableId: string;
+// };
+
 declare type Transaction = {
-  id: string;
-  $id: string;
+  _id: string;
   name: string;
   paymentChannel: string;
   type: string;
   accountId: string;
   amount: number;
-  pending: boolean;
+  status: string;
   category: string;
   date: string;
-  image: string;
-  type: string;
-  $createdAt: string;
-  channel: string;
-  senderBankId: string;
-  receiverBankId: string;
 };
+
+declare interface RecentTransactionsProps {
+  accounts: Account[];
+  transactions: Transaction[];
+  defaultDisplay: string;
+  // page: number;
+}
+
+// declare type Transaction = {
+//   id: string;
+//   $id: string;
+//   name: string;
+//   paymentChannel: string;
+//   type: string;
+//   accountId: string;
+//   amount: number;
+//   pending: boolean;
+//   category: string;
+//   date: string;
+//   image: string;
+//   type: string;
+//   $createdAt: string;
+//   channel: string;
+//   senderBankId: string;
+//   receiverBankId: string;
+// };
 
 declare type Bank = {
   $id: string;
@@ -144,8 +172,8 @@ declare interface CreditCardProps {
 
 declare interface BankInfoProps {
   account: Account;
-  appwriteItemId?: string;
-  type: 'full' | 'card';
+  itemId?: string;
+  // type: 'full' | 'card';
 }
 
 declare interface HeaderBoxProps {
@@ -153,6 +181,7 @@ declare interface HeaderBoxProps {
   title: string;
   subtext: string;
   user?: string;
+  accounts: Account[];
 }
 
 declare interface MobileNavProps {
@@ -199,13 +228,14 @@ declare interface BankDropdownProps {
 
 declare interface BankTabItemProps {
   account: Account;
-  appwriteItemId?: string;
+  itemId?: string;
 }
 
-declare interface TotlaBalanceBoxProps {
+declare interface TotalBalanceBoxProps {
   accounts: Account[];
   totalBanks: number;
   totalCurrentBalance: number;
+  totalAvailableBalance: number;
 }
 
 declare interface FooterProps {
@@ -219,20 +249,19 @@ declare interface RightSidebarProps {
   banks: Bank[] & Account[];
 }
 
+declare interface MobileBarProps {
+  user: User;
+  transactions: Transaction[];
+  banks: Bank[] & Account[];
+}
+
 declare interface SiderbarProps {
   user: User;
 }
 
-declare interface RecentTransactionsProps {
-  accounts: Account[];
-  transactions: Transaction[];
-  appwriteItemId: string;
-  page: number;
-}
-
 declare interface TransactionHistoryTableProps {
   transactions: Transaction[];
-  page: number;
+  page?: number;
 }
 
 declare interface CategoryBadgeProps {

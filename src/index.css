@@ -198,7 +198,7 @@
   }
 
   .total-balance-amount {
-    @apply text-24 lg:text-30 flex-1 font-semibold text-gray-900;
+    @apply text-24 lg:text-30 flex-1 font-semibold;
   }
 
   .recent-transactions {
@@ -218,7 +218,7 @@
   }
 
   .recent-transactions-tablist {
-    @apply custom-scrollbar mb-8 flex w-full flex-nowrap;
+    @apply custom-scrollbar mb-8  mt-2 flex w-full flex-nowrap gap-2;
   }
 
   /* Right sidebar */
@@ -447,4 +447,13 @@
   .sidebar-label {
     @apply text-16 font-semibold text-black-2 max-xl:hidden;
   }
+}
+
+@layer base {
+  /* * {
+    @apply border-border outline-ring/50;
+  } */
+  /* body {
+    @apply bg-background text-foreground;
+  } */
 }
